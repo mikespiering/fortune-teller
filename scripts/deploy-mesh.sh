@@ -4,7 +4,8 @@
 CF_API=`cf api | head -1 | cut -c 25-`
 
 # Deploy services
-cf cs azure-mysqldb basic1 fortunes-db
+#cf cs azure-mysqldb basic1 fortunes-db
+cf cs p.mysql db-small fortunes-db
 export config_json="{\"git\": { \"uri\": \"https://github.com/ciberkleid/fortune-teller\", \"searchPaths\": \"configuration\" } }"
 cf cs p.config-server standard fortunes-config-server -c "$config_json"
 cf create-service p.rabbitmq single-node-3.7 fortunes-cloud-bus
@@ -29,7 +30,9 @@ echo "Service initialization - successful"
 # Push apps
 cf push -f manifest-mesh.yml --vars-file vars.yml
 
+cf add-network-policy fortune-ui --destination-app fortune-service --protocol tcp --port 8080
 
+cf restage fortune-ui
 
 
 

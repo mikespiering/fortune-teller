@@ -4,7 +4,7 @@ applications:
   memory: 1024M
   #random-route: true
   routes:
-  - route: fortune-service.apps.internal
+  - route: fortune-teller-fortune-service.apps.internal
   path: fortune-teller-fortune-service/target/fortune-teller-fortune-service-0.0.1-SNAPSHOT.jar
   instances: 1
   services:
@@ -12,6 +12,7 @@ applications:
   - fortunes-config-server
   env:
     TRUST_CERTS: ((cf_trust_certs))
+    SPRING_PROFILES_ACTIVE: mesh
 - name: fortune-ui
   memory: 1024M
   random-route: true
