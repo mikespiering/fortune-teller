@@ -11,6 +11,6 @@ else
 fi
 
 cf cs p.mysql db-small fortunes-db
-cf cs $service_name standard config-server -c "$config_json"
-cf cs p-service-registry standard service-registry
-cf cs p-circuit-breaker-dashboard standard circuit-breaker
+cf cs $service_name standard fortunes-config-server -c "$config_json"
+cf cs p-service-registry standard fortunes-service-registry
+cf cs p-circuit-breaker-dashboard standard fortunes-circuit-breaker-dashboard

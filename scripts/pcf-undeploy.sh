@@ -6,6 +6,6 @@ cf delete fortune-ui -f
 
 # delete services
 cf delete-service fortunes-db -f
-cf delete-service config-server -f
-cf delete-service service-registry -f
-cf delete-service circuit-breaker -f
+cf delete-service fortunes-config-server -f
+cf delete-service fortunes-service-registry -f
+cf delete-service fortunes-circuit-breaker-dashboard -f

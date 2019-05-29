@@ -6,5 +6,5 @@ applications:
   host: fortunes-ui-${random-word}
   path: target/fortune-teller-ui-0.0.1-SNAPSHOT.jar
   services:
-  - config-server
-  - service-registry
+  - fortunes-config-server
+  - fortunes-service-registry
