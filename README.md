@@ -10,6 +10,15 @@ Deploy:
 ./mvnw clean package
 ./scripts/deploy.sh
 ```
+
+Demo:
+- open fortune-ui in a browser - show that fortune-ui returns a variety of fortunes in random order
+- stop fortune-service
+- show that fortune-ui now returns the fallback fortune obtained through the config server
+- update value of fallbackFortune in [configuration/application.yml](configuration/application.yml)
+- force config refresh using `curl -X POST https://<YOUR-FORTUNE_UI_URL>/actuator/refresh`
+- show that fortune-ui now returns the updated fallback fortune
+
 Clean Up:
 ```
 ./scripts/undeploy.sh
