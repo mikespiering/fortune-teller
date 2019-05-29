@@ -3,7 +3,7 @@ service: p-config-server
 service_plan: trial
 parameters:
   git:
-    uri: https://github.com/dbbaskette/fortune-teller
+    uri: https://github.com/ciberkleid/fortune-teller
     searchPaths: configuration
 ---
 service_name: fortunes-service-registry
