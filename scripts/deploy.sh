@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
-
-CF_API=`cf api | head -1 | cut -c 25-`
+# Build apps
+./mvnw clean package
 
 # Deploy services
+CF_API=`cf api | head -1 | cut -c 25-`
+
 if [[ $CF_API == *"api.run.pivotal.io"* ]]; then
     cf create-service cleardb spark fortunes-db
     cf create-service p-config-server trial fortunes-config-server -c '{"git": { "uri": "https://github.com/ciberkleid/fortune-teller", "searchPaths": "configuration" } }'

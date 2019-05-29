@@ -7,7 +7,6 @@
 
 Deploy:
 ```
-./mvnw clean package
 ./scripts/deploy.sh
 ```
 
@@ -22,6 +21,7 @@ Demo:
 - update value of fallbackFortune in [configuration/application.yml](configuration/application.yml)
 - force config refresh using `curl -X POST https://<YOUR-FORTUNE_UI_URL>/actuator/bus-refresh`
 - show that all instances of fortune-ui return the updated fallback fortune
+- show distributed tracing in PCF Metrics (filter on key word "random")
 
 Clean Up:
 ```
