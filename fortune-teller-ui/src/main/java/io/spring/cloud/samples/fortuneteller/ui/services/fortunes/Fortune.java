@@ -18,6 +18,7 @@
 public class Fortune {
     private Long id;
     private String text;
+    private String instanceIndex;
 
     public Fortune() {
     }
@@ -41,5 +42,9 @@ public class Fortune {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getInstanceIndex() {
+        return System.getenv("CF_INSTANCE_INDEX");
     }
 }
