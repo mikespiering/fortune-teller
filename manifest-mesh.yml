@@ -4,13 +4,12 @@ applications:
   memory: 1024M
   #random-route: true
   routes:
-  - route: fortune-service.cfapps.internal
+  - route: fortune-service.apps.internal
   path: fortune-teller-fortune-service/target/fortune-teller-fortune-service-0.0.1-SNAPSHOT.jar
   instances: 1
   services:
   - fortunes-db
   - fortunes-config-server
-  - fortunes-service-registry
   env:
     TRUST_CERTS: ((cf_trust_certs))
 - name: fortune-ui
@@ -20,8 +19,6 @@ applications:
   instances: 1
   services:
   - fortunes-config-server
-  - fortunes-service-registry
-  - fortunes-circuit-breaker-dashboard
   - fortunes-cloud-bus
   env:
     TRUST_CERTS: ((cf_trust_certs))

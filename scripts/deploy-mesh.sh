@@ -27,7 +27,7 @@ fi
 echo "Service initialization - successful"
 
 # Push apps
-cf push -f manifest.yml --vars-file vars.yml
+cf push -f manifest-mesh.yml --vars-file vars.yml
 
 
 

@@ -1,5 +1,5 @@
 fortune:
-  fortuneServiceURL: http://fortune-service.cfapps.internal
+  fortuneServiceURL: http://fortune-service.apps.internal
 
 spring:
   cloud:
