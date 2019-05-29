@@ -33,7 +33,7 @@ public class FortuneService {
 
     @HystrixCommand(fallbackMethod = "fallbackFortune")
     public Fortune randomFortune() {
-        return restTemplate.getForObject("http://fortunes/random", Fortune.class);
+        return restTemplate.getForObject(fortuneProperties.getFortuneServiceURL() +"/random", Fortune.class);
     }
 
     private Fortune fallbackFortune() {
