@@ -20,5 +20,6 @@ applications:
   - fortunes-config-server
   - fortunes-service-registry
   - fortunes-circuit-breaker-dashboard
+  - fortunes-cloud-bus
   env:
     TRUST_CERTS: ((cf_trust_certs))

@@ -9,6 +9,7 @@ if [[ $CF_API == *"api.run.pivotal.io"* ]]; then
     cf create-service p-config-server trial fortunes-config-server -c '{"git": { "uri": "https://github.com/ciberkleid/fortune-teller", "searchPaths": "configuration" } }'
     cf create-service p-service-registry trial fortunes-service-registry
     cf create-service p-circuit-breaker-dashboard trial fortunes-circuit-breaker-dashboard
+    cf create-service cloudamqp lemur fortunes-cloud-bus
 else
     if [ ! -z "`cf m | grep "p\.config-server"`" ]; then
       export service_name="p.config-server"
@@ -25,6 +26,7 @@ else
     cf cs $service_name standard fortunes-config-server -c "$config_json"
     cf cs p-service-registry standard fortunes-service-registry
     cf cs p-circuit-breaker-dashboard standard fortunes-circuit-breaker-dashboard
+    cf create-service p.rabbitmq single-node-3.7 fortunes-cloud-bus
 fi
 
 # Prepare config file to set TRUST_CERTS value

@@ -18,6 +18,10 @@ Demo:
 - update value of fallbackFortune in [configuration/application.yml](configuration/application.yml)
 - force config refresh using `curl -X POST https://<YOUR-FORTUNE_UI_URL>/actuator/refresh`
 - show that fortune-ui now returns the updated fallback fortune
+- scale app using `cf scale fortune-ui -i 2`
+- update value of fallbackFortune in [configuration/application.yml](configuration/application.yml)
+- force config refresh using `curl -X POST https://<YOUR-FORTUNE_UI_URL>/actuator/bus-refresh`
+- show that all instances of fortune-ui return the updated fallback fortune
 
 Clean Up:
 ```
