@@ -26,7 +26,7 @@ else
 fi
 
 
-echo "cf_trust_certs=$CF_API" > vars.yml
+echo "cf_trust_certs: $CF_API" > vars.yml
 
 cf push -f manifest.yml --vars-file vars.yml
 
