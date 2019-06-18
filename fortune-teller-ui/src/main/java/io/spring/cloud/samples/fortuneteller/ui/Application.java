@@ -21,6 +21,7 @@ import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
@@ -30,8 +31,15 @@ public class Application {
 
     @Bean
     @LoadBalanced
-    public RestTemplate restTemplate() {
+    @Profile("!mesh")
+    public RestTemplate restTemplateLB() {
       return new RestTemplate();
+    }
+
+    @Bean
+    @Profile("mesh")
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 
     public static void main(String[] args) {

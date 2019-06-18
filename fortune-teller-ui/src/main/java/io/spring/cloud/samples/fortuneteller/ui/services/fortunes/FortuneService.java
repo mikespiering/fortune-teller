@@ -29,11 +29,11 @@ public class FortuneService {
     FortuneProperties fortuneProperties;
 
     @Autowired
-    RestTemplate restTemplate;
+    RestTemplate anyRestTemplate;
 
     @HystrixCommand(fallbackMethod = "fallbackFortune")
     public Fortune randomFortune() {
-        return restTemplate.getForObject(fortuneProperties.getFortuneServiceURL() +"/random", Fortune.class);
+        return anyRestTemplate.getForObject(fortuneProperties.getFortuneServiceURL() +"/random", Fortune.class);
     }
 
     private Fortune fallbackFortune() {
