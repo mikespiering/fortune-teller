@@ -19,3 +19,5 @@ hystrix:
   stream:
     queue:
       enabled: false
+
+logging.level.root: DEBUG
