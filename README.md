@@ -34,6 +34,9 @@ source ./scripts/deploy.sh
    _**What does this show?** the bus-refresh endpoint triggered both fortune-ui instances to obtain the updated value from Config Server by publishing a trigger message to the fortunes-cloud-bus._
 10. In Apps Manager, navigate to the details page for fortune-ui and click on the link for PCF Metrics. In the PCF Metrics UI, filter the logs using the key work "random". Click on the icon on the left of the search results to open the Distributed Tracing UI. Observe that distributed tracing shows the trajectory of a user request across both fortune-ui and fortune-service.
 11. To show fortune-ui discovering fortune-service without using the Service Registry (Eureka), run the following commands. Replace <DOMAIN> and <HOSTNAME> with the appropriate values from your fortune-service URL.
+12. Refresh fortune-ui in your browser several times to see that both instances return a variety of fortunes in random order.
+
+
 ```
 cf unbind-service fortune-service fortunes-service-registry
 cf unbind-service fortune-ui fortunes-service-registry
@@ -45,7 +48,6 @@ cf restage fortune-service
 cf restage fortune-ui
 cf add-network-policy fortune-ui --destination-app fortune-service --protocol tcp --port 8080
 ```
-12. Refresh fortune-ui in your browser several times to see that both instances return a variety of fortunes in random order.
 
    _**What does this show?** fortune-ui is using the default internal domain to discover and load balance requests to fortune-service._
 
