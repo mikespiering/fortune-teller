@@ -45,7 +45,7 @@ cf restage fortune-service
 cf restage fortune-ui
 cf add-network-policy fortune-ui --destination-app fortune-service --protocol tcp --port 8080
 ```
-11. Refresh fortune-ui in your browser several times to see that both instances return a variety of fortunes in random order.
+12. Refresh fortune-ui in your browser several times to see that both instances return a variety of fortunes in random order.
 
    _**What does this show?** fortune-ui is using the default internal domain to discover and load balance requests to fortune-service._
 
