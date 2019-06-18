@@ -11,9 +11,9 @@ source ./scripts/deploy.sh
 ```
 
 ### Demo:
-1. Open fortune-ui in a browser - refresh the page several times and notice that fortune-ui returns a variety of fortunes in random order
+1. Open fortune-ui in a browser - refresh the page several times and notice that fortune-ui returns a variety of fortunes in random order.
 
-   _**What does this show?** fortune-ui retrieved the endpoint for fortune-service from the Discovery Server (Eureka) and is successfully communicating with fortune-service.._
+   _**What does this show?** fortune-ui retrieved the endpoint for fortune-service from the Discovery Server (Eureka) and is successfully communicating with fortune-service._
 2. Stop fortune-service using Apps Manager or `cf stop fortune-service`. Refresh fortune-ui in your browser several times to see that it now repeatedly returns a single static fortune.
 
    _**What does this show?** fortune-ui is using a Circuit Breaker to gracefully handle the "outage" of fortune-service and return a fallback fortune. Note the corresponding code in fortune-ui's [FortuneService.java](fortune-teller-ui/src/main/java/io/spring/cloud/samples/fortuneteller/ui/services/fortunes/FortuneService.java), which uses @HystrixCommand to create a circuit breaker with a fallback method._
