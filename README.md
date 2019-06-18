@@ -5,12 +5,12 @@
 
 ## Or deploy manually:
 
-Deploy:
+### Deploy:
 ```
 source ./scripts/deploy.sh
 ```
 
-Demo:
+### Demo:
 1. Open fortune-ui in a browser - refresh the page several times and notice that fortune-ui returns a variety of fortunes in random order
 
    _**What does this show?** fortune-ui retrieved the endpoint for fortune-service from the Discovery Server (Eureka) and is successfully communicating with fortune-service.._
@@ -34,7 +34,7 @@ Demo:
    _**What does this show?** the bus-refresh endpoint triggered both fortune-ui instances to obtain the updated value from Config Server by publishing a trigger message to the fortunes-cloud-bus._
 10. In Apps Manager, navigate to the details page for fortune-ui and click on the link for PCF Metrics. In the PCF Metrics UI, filter the logs using the key work "random". Click on the icon on the left of the search results to open the Distributed Tracing UI. Observe that distributed tracing shows the trajectory of a user request across both fortune-ui and fortune-service.
 
-Clean Up:
+### Clean Up:
 ```
 ./scripts/undeploy.sh
 ```
