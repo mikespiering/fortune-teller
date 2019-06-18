@@ -15,6 +15,10 @@ eureka:
     register-with-eureka: false
     enabled: false
 
+ribbon:
+  eureka:
+    enabled: false
+
 hystrix:
   stream:
     queue:
