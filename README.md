@@ -27,8 +27,6 @@ source ./scripts/deploy.sh
    _**What does this show?** Notice the use of @RefreshScope in [FortuneProperties.java](fortune-teller-ui/src/main/java/io/spring/cloud/samples/fortuneteller/ui/services/fortunes/FortuneProperties.java). fortune-ui obtained the updated fallbackFortune from Config Server and refreshed the value of fallbackFortune without requiring a restart._
 #### 5. Config Server in Action - Client Refresh (all instances)
 - Scale the fortune-ui app using `cf scale fortune-ui -i 2`. Refresh fortune-ui in your browser several times and notice that the traffic is load balanced across both instances (note the changing value of the app instance id displayed on the page).
-
-
 - Repeat the first two bullet points in Step 4 (update the fallbackFortune in your git repo and force the Config Server to update its clone of the config repo).
 - Trigger fortune-ui to refresh the value of fallbackFortune by calling the refresh endpoint on each instance individually, as follows:
  ```
@@ -51,7 +49,6 @@ curl -X POST -k https://<YOUR-FORTUNE_UI_URL>/actuator/bus-refresh -H "X-CF-APP-
 - In Apps Manager, navigate to the details page for fortune-ui and click on the link for PCF Metrics. In the PCF Metrics UI, filter the logs using the key work "random". Click on the icon on the left of the search results to open the Distributed Tracing UI. Observe that distributed tracing shows the trajectory of a user request across both fortune-ui and fortune-service.
 #### 8. Service Discovery using Cloud Foundry Internal Domain
 - To show fortune-ui discovering fortune-service without using the Service Registry (Eureka), run the following commands. Replace <DOMAIN> and <HOSTNAME> with the appropriate values from your fortune-service URL.
-
 ```
 cf unbind-service fortune-service fortunes-service-registry
 cf unbind-service fortune-ui fortunes-service-registry
@@ -63,7 +60,6 @@ cf restage fortune-service
 cf restage fortune-ui
 cf add-network-policy fortune-ui --destination-app fortune-service --protocol tcp --port 8080
 ```
-   
 - Refresh fortune-ui in your browser several times to see that both instances return a variety of fortunes in random order.
 
    _**What does this show?** fortune-ui is using the default internal domain to discover and load balance requests to fortune-service._
