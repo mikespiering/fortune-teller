@@ -43,18 +43,16 @@ curl -X POST -k https://$app_url/actuator/bus-refresh -H "X-CF-APP-INSTANCE":"$a
 ```
 - Refresh fortune-ui in your browser several times to see that one instance returns the updated fallbackFortune. Then trigger the refresh on the second instance:
 ```
-export app_url=`cf app fortune-ui | grep "routes:" | cut -c 20-`
-export app_guid=`cf app fortune-ui --guid`
 curl -X POST -k https://$app_url/actuator/bus-refresh -H "X-CF-APP-INSTANCE":"$app_guid:1"
 ```
-- Refresh fortune-ui in your browser several times to see that both instances returns the updated fallbackFortune.
+- Refresh fortune-ui in your browser several times to see that both instances return the updated fallbackFortune.
 
    _**What does this show?** You can target each individual instance of fortune-ui to ensure all instances obtain the updated value from Config Server._
 #### 6. Config Server in Action - Client Refresh (all instances using message trigger)
 - Repeat the first two bullet points in Step 4 (update the fallbackFortune in your git repo and force the Config Server to update its clone of the config repo).
 - Trigger fortune-ui to refresh the value of fallbackFortune in both instances, as follows:
 ```
-export app_guid=`cf app fortune-ui --guid`
+export app_url=`cf app fortune-ui | grep "routes:" | cut -c 20-`
 curl -X POST -k https://$app_url/actuator/bus-refresh
 ```
 - Refresh fortune-ui in your browser several times to see that both instances return the updated fallbackFortune.
