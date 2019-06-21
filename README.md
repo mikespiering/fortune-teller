@@ -1,5 +1,9 @@
 # Deploy:
+
+Use the cf CLI to target the org and space into which you want to deploy this demo. Then, run the following commands:
 ```
+git clone https://github.com/ciberkleid/fortune-teller
+cd fortune-teller
 source ./scripts/deploy.sh
 ```
 
