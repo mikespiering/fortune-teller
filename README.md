@@ -59,8 +59,17 @@ curl -X POST -k https://$app_url/actuator/bus-refresh
 
    _**What does this show?** The bus-refresh endpoint triggered both fortune-ui instances to obtain the updated value from Config Server by publishing a trigger message to the fortunes-cloud-bus._
 #### 7. Distributed Tracing
-- In Apps Manager, navigate to the details page for fortune-ui and click on the link for PCF Metrics. In the PCF Metrics UI, filter the logs using the key work "random". Click on the icon on the left of the search results to open the Distributed Tracing UI. Observe that distributed tracing shows the trajectory of a user request across both fortune-ui and fortune-service.
-#### 8. Service Discovery using Cloud Foundry Internal Domain
+- In Apps Manager, navigate to the details page for fortune-ui and click on the link for PCF Metrics. 
+- In the PCF Metrics UI, filter the logs using the key word "random". 
+- In the search results, hover your mouse over the icons to the left of any of the log entries until you find one that reveals "Open in Trace Explorer." Click on it to open the Trace Explorer UI.
+- In the Trace Explorer UI, notice that the trajectory of a user request across both fortune-ui and fortune-service is shown.
+
+   _**What does this show?** PCF and Spring Cloud Sleuth are workign together to provide a distributed trace for the fortune-teller application as a while, across each individual application. This is useful for understanding interdependencies between applications, analyzing latency and performance, and identifying potential bottlenecks._
+
+#### 8. Service Discovery using Service Registry and Direct Registration Mode
+<COMING SOON>
+
+#### 9. Service Discovery using Cloud Foundry Internal Domain
 - To show fortune-ui discovering fortune-service without using the Service Registry (Eureka), run the following commands. Replace <DOMAIN> and <HOSTNAME> with the appropriate values from your fortune-service URL.
 ```
 export app2_hostname=`cf app fortune-service | grep "routes:" | cut -c 20- | cut -d "." -f 1`
@@ -78,7 +87,7 @@ cf add-network-policy fortune-ui --destination-app fortune-service --protocol tc
 - Refresh fortune-ui in your browser several times to see that both instances return a variety of fortunes in random order.
 
    _**What does this show?** fortune-ui is using the default internal domain to discover and load balance requests to fortune-service._
-#### 9. Config Server with CredHub Backend
+#### 10. Config Server with CredHub Backend
 
 ```
 export config_server_url=`cf service fortunes-config-server | grep "dashboard:" | cut -c 19- | cut -d "/" -f 1-3`
