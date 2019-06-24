@@ -39,11 +39,11 @@ curl -X POST -k https://$app_url/actuator/refresh
  ```
 export app_url=`cf app fortune-ui | grep "routes:" | cut -c 20-`
 export app_guid=`cf app fortune-ui --guid`
-curl -X POST -k https://$app_url/actuator/bus-refresh -H "X-CF-APP-INSTANCE":"$app_guid:0"
+curl -X POST -k https://$app_url/actuator/refresh -H "X-CF-APP-INSTANCE":"$app_guid:0"
 ```
 - Refresh fortune-ui in your browser several times to see that one instance returns the updated fallbackFortune. Then trigger the refresh on the second instance:
 ```
-curl -X POST -k https://$app_url/actuator/bus-refresh -H "X-CF-APP-INSTANCE":"$app_guid:1"
+curl -X POST -k https://$app_url/actuator/refresh -H "X-CF-APP-INSTANCE":"$app_guid:1"
 ```
 - Refresh fortune-ui in your browser several times to see that both instances return the updated fallbackFortune.
 
@@ -72,7 +72,7 @@ curl -X POST -k https://$app_url/actuator/bus-refresh
 export app2_hostname=`cf app fortune-service | grep "routes:" | cut -c 20- | cut -d "." -f 1`
 export app2_domain=`cf app fortune-service | grep "routes:" | cut -c 20- | cut -d "." -f 2,3`
 cf unmap-route fortune-service $app2_domain --hostname $app2_hostname
-cf set-env fortune-service SPRING_PROFILES_ACTIVE eruekaDirect
+cf set-env fortune-service SPRING_PROFILES_ACTIVE eurekaDirect
 cf restart fortune-service
 cf add-network-policy fortune-ui --destination-app fortune-service --protocol tcp --port 8080
 ```
