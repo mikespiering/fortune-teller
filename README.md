@@ -64,10 +64,10 @@ curl -X POST -k https://$app_url/actuator/bus-refresh
 - In the search results, hover your mouse over the icons to the left of any of the log entries until you find one that reveals "Open in Trace Explorer." Click on it to open the Trace Explorer UI.
 - In the Trace Explorer UI, notice that the trajectory of a user request across both fortune-ui and fortune-service is shown.
 
-   _**What does this show?** PCF and Spring Cloud Sleuth are workign together to provide a distributed trace for the fortune-teller application as a while, across each individual application. This is useful for understanding interdependencies between applications, analyzing latency and performance, and identifying potential bottlenecks._
+   _**What does this show?** PCF and Spring Cloud Sleuth are working together to provide a distributed trace for the fortune-teller application as a whole (from fortune-ui to fortune-service and back). This is useful for understanding interdependencies between applications, analyzing latency and performance, and identifying potential bottlenecks._
 
 #### 8. Service Discovery using Service Registry and Direct Registration Mode
-<COMING SOON>
+**----->COMING SOON**
 
 #### 9. Service Discovery using Cloud Foundry Internal Domain
 - To show fortune-ui discovering fortune-service without using the Service Registry (Eureka), run the following commands. Replace <DOMAIN> and <HOSTNAME> with the appropriate values from your fortune-service URL.
