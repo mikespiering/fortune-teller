@@ -67,7 +67,13 @@ curl -X POST -k https://$app_url/actuator/bus-refresh
    _**What does this show?** PCF and Spring Cloud Sleuth are working together to provide a distributed trace for the fortune-teller application as a whole (from fortune-ui to fortune-service and back). This is useful for understanding interdependencies between applications, analyzing latency and performance, and identifying potential bottlenecks._
 
 #### 8. Service Discovery using Service Registry and Direct Registration Mode
-**----->COMING SOON**
+- To show fortune-ui discovering fortune-service using Direct Registration Mode, run the following commands. 
+
+cf set-env fortune-service SPRING_PROFILES_ACTIVE eruekaDirect
+cf restart fortune-service
+cf add-network-policy fortune-ui --destination-app fortune-service --protocol tcp --port 8080
+
+_**What does this show?** fortune-ui is using the internal ip addresses of the fortune-service instances and load balancing the requests._
 
 #### 9. Service Discovery using Cloud Foundry Internal Domain
 - To show fortune-ui discovering fortune-service without using the Service Registry (Eureka), run the following commands. Replace <DOMAIN> and <HOSTNAME> with the appropriate values from your fortune-service URL.
