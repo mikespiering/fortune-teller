@@ -70,8 +70,8 @@ curl -X POST -k https://$app_url/actuator/bus-refresh
 - To show fortune-ui discovering fortune-service using Direct Registration Mode, run the following commands. 
 ```
 cf set-env fortune-service SPRING_PROFILES_ACTIVE eruekaDirect
-cf restart fortune-service
 cf add-network-policy fortune-ui --destination-app fortune-service --protocol tcp --port 8080
+cf restart fortune-service
 ```
 _**What does this show?** fortune-ui is using the internal ip addresses of the fortune-service instances and load balancing the requests._
 
