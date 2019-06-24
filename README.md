@@ -69,12 +69,17 @@ curl -X POST -k https://$app_url/actuator/bus-refresh
 #### 8. Service Discovery using Service Registry and Direct Registration Mode
 - To show fortune-ui discovering fortune-service using Direct Registration Mode, run the following commands. 
 ```
+export app2_hostname=`cf app fortune-service | grep "routes:" | cut -c 20- | cut -d "." -f 1`
+export app2_domain=`cf app fortune-service | grep "routes:" | cut -c 20- | cut -d "." -f 2,3`
+cf unmap-route fortune-service $app2_domain --hostname $app2_hostname
 cf set-env fortune-service SPRING_PROFILES_ACTIVE eruekaDirect
 cf add-network-policy fortune-ui --destination-app fortune-service --protocol tcp --port 8080
 cf restart fortune-service
 ```
-_**What does this show?** fortune-ui is using the internal ip addresses of the fortune-service instances and load balancing the requests._
+- Using Apps Manager or by typing `cf apps` at the command line, notice that fortune-service no longer has a mapped route.
+- Open fortune-ui in your browser and notice that it still returns a variety of random fortunes, proving it is connecting to fortune-service, despite the fact that fortune-service is not publicly routable.
 
+   _**What does this show?** fortune-ui is using the internal ip addresses of the fortune-service instances and load balancing the requests._
 #### 9. Service Discovery using Cloud Foundry Internal Domain
 - To show fortune-ui discovering fortune-service without using the Service Registry (Eureka), run the following commands. Replace <DOMAIN> and <HOSTNAME> with the appropriate values from your fortune-service URL.
 ```
