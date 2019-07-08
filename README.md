@@ -100,13 +100,17 @@ cf add-network-policy fortune-ui --destination-app fortune-service --protocol tc
 
    _**What does this show?** fortune-ui is using the default internal domain to discover and load balance requests to fortune-service._
 #### 10. Config Server with CredHub Backend
-
+- Execute the following commands in order to instruct Config Server to store a key/value pair in CredHub. 
 ```
 export config_server_url=`cf service fortunes-config-server | grep "dashboard:" | cut -c 19- | cut -d "/" -f 1-3`
 curl $config_server_url/secrets/fortune-ui/cloud/master/my-cloud-secret -H "Authorization: $(cf oauth-token)" -X PUT -k --data '{"my-secret-cloud-key": "my-super-secret-cloud-value"}' -H "Content-Type: application/json"
+```
+- Use the following commands to refresh fortune-ui's config values from Config Server.
+```
+export app_url=`cf app fortune-ui | grep "routes:" | cut -c 20-`
 curl -X POST -k https://$app_url/actuator/bus-refresh
 ```
-- Open fortune-ui in your browser and add the path `/actuator/env` to the end of the URL. You will see a property source called `"name": "configService:credhub-fortune-ui"`, and you should see one of the properties matches the one you just inserted. The key is legible, and the value is redacted intentionally.
+- Open fortune-ui in your browser and add the path `/actuator/env` to the end of the URL. You will see a property source called `"name": "configService:credhub-fortune-ui"`, and you should see that one of the properties matches the one you just inserted. The key is legible, and the value is redacted intentionally.
 
    _**What does this show?** fortune-ui is using the a composite backend comprising GitHub and CredHub._
 
