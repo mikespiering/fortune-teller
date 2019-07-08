@@ -20,7 +20,7 @@ source ./scripts/deploy.sh
 #### 3. Config Server in Action
 - Notice that the value of the fallback fortune that fortune-ui is returning in the browser is coming from a [config file](configuration/application.yml) and not from the [fortune-ui code](fortune-teller-ui/src/main/java/io/spring/cloud/samples/fortuneteller/ui/services/fortunes/FortuneProperties.java).
 
-   _**What does this show?** Notice the use of @ConfigurationProperties in [FortuneProperties.java](fortune-teller-ui/src/main/java/io/spring/cloud/samples/fortuneteller/ui/services/fortunes/FortuneProperties.java). fortune-ui is obtaining configuration from an externalized configuratoin file via Config Server._
+   _**What does this show?** Notice the use of @ConfigurationProperties in [FortuneProperties.java](fortune-teller-ui/src/main/java/io/spring/cloud/samples/fortuneteller/ui/services/fortunes/FortuneProperties.java). fortune-ui is obtaining configuration from an externalized configuration file via Config Server._
 #### 4. Config Server in Action - Client Refresh (single instance)
 - Update the value of fallbackFortune in [configuration/application.yml](configuration/application.yml). Commit & push the change to GitHub.
 
